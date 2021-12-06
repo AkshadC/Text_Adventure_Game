@@ -37,13 +37,14 @@ public class Main extends Application implements Runnable, Initializable {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("player-profile.fxml"));
         Scene scene = new Scene(loader.load());
-
+        scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("Buttons.css")).toExternalForm());
         stage.setResizable(false);
         stage.setScene(scene);
+
         stage.setMaxWidth(scene.getWidth());
         stage.setMaxHeight(scene.getHeight());
-
         stage.show();
+
     }
 
     @Override
@@ -70,8 +71,10 @@ public class Main extends Application implements Runnable, Initializable {
     private void switchToGame(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("game.fxml")));
+
             Stage gameStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(Main.class.getResource("Buttons.css")).toExternalForm());
             gameStage.setScene(scene);
             gameStage.show();
         } catch (IOException e) {
